@@ -18,12 +18,6 @@ public class Admin {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
-    @Column(columnDefinition = "INT DEFAULT 0")
-    private int failedLoginAttempts = 0;
-
-    @Column(columnDefinition = "TINYINT(1) DEFAULT 0")
-    private boolean isLocked = false;
-
     public Long getId() {
         return id;
     }
@@ -46,21 +40,5 @@ public class Admin {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public int getFailedLoginAttempts() {
-        return failedLoginAttempts;
-    }
-
-    public void setFailedLoginAttempts(int attempts) {
-        this.failedLoginAttempts = attempts;
-    }
-
-    public boolean isLocked() {
-        return isLocked;
-    }
-
-    public void setLocked(boolean locked) {
-        this.isLocked = locked;
     }
 }

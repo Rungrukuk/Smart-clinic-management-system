@@ -36,15 +36,6 @@ public class Doctor {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> availableTimes;
 
-    @Column(columnDefinition = "TINYINT(1) DEFAULT 1")
-    private boolean isActive = true;
-
-    @Column(columnDefinition = "INT DEFAULT 0")
-    private int failedLoginAttempts = 0;
-
-    @Column(columnDefinition = "TINYINT(1) DEFAULT 0")
-    private boolean isLocked = false;
-
     public Long getId() {
         return id;
     }
@@ -99,29 +90,5 @@ public class Doctor {
 
     public void setAvailableTimes(List<String> availableTimes) {
         this.availableTimes = availableTimes;
-    }
-
-    public boolean getIsActive() {
-        return isActive;
-    }
-
-    public void setIsActive(boolean active) {
-        isActive = active;
-    }
-
-    public int getFailedLoginAttempts() {
-        return failedLoginAttempts;
-    }
-
-    public void setFailedLoginAttempts(int failedLoginAttempts) {
-        this.failedLoginAttempts = failedLoginAttempts;
-    }
-
-    public boolean getIsLocked() {
-        return isLocked;
-    }
-
-    public void setIsLocked(boolean locked) {
-        isLocked = locked;
     }
 }

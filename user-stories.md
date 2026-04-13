@@ -18,8 +18,6 @@ _As an admin, I want to log into the portal with my username and password, so th
 **Priority:** High
 **Story Points:** 3
 **Notes:**
-- Accounts should be locked after a defined number of failed login attempts.
-- Passwords must be stored using a secure hashing algorithm such as BCrypt.
 
 ---
 
@@ -52,26 +50,11 @@ _As an admin, I want to add a doctor to the portal, so that patients can view an
 **Story Points:** 5
 **Notes:**
 - The system should prevent duplicate doctor entries with the same email address.
-- The newly added doctor should receive a system-generated email with their login credentials.
 
 ---
 
 **Title:** Delete Doctor Profile
 
-_As an admin, I want to delete a doctor's profile from the portal, so that patients cannot book appointments with doctors who are no longer available._
-
-**Acceptance Criteria:**
-1. The admin can select a doctor and choose the delete option from the management panel.
-2. A confirmation prompt is shown before the deletion is finalised.
-3. The doctor's profile is removed and no longer appears in the doctor listing or booking flow.
-
-**Priority:** Medium
-**Story Points:** 3
-**Notes:**
-- Deleting a doctor with existing upcoming appointments should either reassign or cancel those appointments, and patients should be notified.
-- Consider using soft deletion to retain historical records for reporting purposes.
-
----
 
 **Title:** View Appointment Statistics
 
@@ -85,8 +68,6 @@ _As an admin, I want to run a stored procedure in the MySQL CLI to get the numbe
 **Priority:** Medium
 **Story Points:** 3
 **Notes:**
-- The stored procedure should be documented so other administrators can run it without technical guidance.
-- Consider exposing this data through an admin dashboard report in a future iteration.
 
 ---
 
@@ -123,7 +104,6 @@ _As a patient, I want to sign up using my email and password, so that I can book
 **Story Points:** 5
 **Notes:**
 - Passwords must be confirmed via a repeat password field.
-- Consider sending a verification email before activating the account.
 
 ---
 
@@ -172,7 +152,6 @@ _As a patient, I want to book an hour-long appointment with a doctor, so that I 
 **Story Points:** 8
 **Notes:**
 - Each appointment is fixed at one hour in duration.
-- A confirmation notification should be sent to the patient after a successful booking.
 - The system must prevent double-booking the same time slot.
 
 ---
