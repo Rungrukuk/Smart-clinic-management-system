@@ -36,12 +36,13 @@ public class Doctor {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> availableTimes;
 
-    @Column(columnDefinition = "TINYINT(1)")
+    @Column(columnDefinition = "TINYINT(1) DEFAULT 1")
     private boolean isActive = true;
 
+    @Column(columnDefinition = "INT DEFAULT 0")
     private int failedLoginAttempts = 0;
 
-    @Column(columnDefinition = "TINYINT(1)")
+    @Column(columnDefinition = "TINYINT(1) DEFAULT 0")
     private boolean isLocked = false;
 
     public Long getId() {

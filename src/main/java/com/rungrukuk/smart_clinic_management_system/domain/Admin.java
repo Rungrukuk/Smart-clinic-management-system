@@ -18,9 +18,10 @@ public class Admin {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
+    @Column(columnDefinition = "INT DEFAULT 0")
     private int failedLoginAttempts = 0;
 
-    @Column(columnDefinition = "TINYINT(1)")
+    @Column(columnDefinition = "TINYINT(1) DEFAULT 0")
     private boolean isLocked = false;
 
     public Long getId() {
