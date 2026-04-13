@@ -1,0 +1,75 @@
+services:
+
+  app:
+    build: .
+    container_name: clinic-app
+    ports:
+      - "8080:8080"
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_DB: cms
+      MYSQL_USER: clinic_user
+      MYSQL_PASSWORD: clinic_pass
+      MONGO_HOST: mongodb
+      MONGO_PORT: 27017
+      MONGO_DB: cms
+      MONGO_USER: clinic_user
+      MONGO_PASSWORD: clinic_pass
+    depends_on:
+      mysql:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
+    networks:
+      - clinic-network
+    restart: on-failure
+
+  mysql:
+    image: mysql:latest
+    container_name: clinic-mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root_pass
+      MYSQL_DATABASE: cms
+      MYSQL_USER: clinic_user
+      MYSQL_PASSWORD: clinic_pass
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot_pass"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - clinic-network
+    restart: unless-stopped
+
+  mongodb:
+    image: mongo:latest
+    container_name: clinic-mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: clinic_user
+      MONGO_INITDB_ROOT_PASSWORD: clinic_pass
+      MONGO_INITDB_DATABASE: cms
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - clinic-network
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
+  mongo_data:
+
+networks:
+  clinic-network:
+    driver: bridge

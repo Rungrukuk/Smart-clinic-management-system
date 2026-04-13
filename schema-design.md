@@ -17,6 +17,9 @@
 * email: VARCHAR(100), Unique, Not Null
 * password: VARCHAR(255), Not Null
 * phone: VARCHAR(15), Not Null
+* is_active: TINYINT(1)
+* failed_login_attempts: INT
+* is_locked: TINYINT(1)
 
 ### Table: appointments
 
@@ -31,6 +34,8 @@
 * id: INT, Primary Key, Auto Increment
 * username: VARCHAR(50), Unique, Not Null
 * password: VARCHAR(255), Not Null
+* failed_login_attempts: INT
+* is_locked: TINYINT(1)
 
 ---
 
